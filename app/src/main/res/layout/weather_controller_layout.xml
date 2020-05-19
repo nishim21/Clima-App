@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backgroundLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg4"
@@ -21,11 +22,14 @@
         android:layout_marginBottom="70dp"
         android:background="#802890EC"
         android:fontFamily="@font/acme"
+        android:paddingLeft="25dp"
+        android:paddingTop="10dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="10dp"
         android:text="@string/default_location"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#BADBF8"
-        android:textSize="42sp"
-        android:textStyle="italic" />
+        android:textColor="@color/textColor"
+        android:textSize="38sp" />
 
     <TextView
         android:id="@+id/tempTV"
@@ -37,7 +41,7 @@
         android:fontFamily="@font/acme"
         android:text="@string/default_temp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#A9D3F8"
+        android:textColor="@color/textColor"
         android:textSize="90sp" />
 
     <ImageButton
@@ -48,8 +52,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:alpha="0.6"
-        android:background="@null"
+        android:background="@drawable/image_button_click"
         android:contentDescription="@string/change_city_description"
+        android:padding="8dp"
         android:src="@drawable/change_city_symbol_small" />
 
     <FrameLayout
@@ -64,10 +69,10 @@
             android:id="@+id/weatherSymbolIV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:alpha="0.8"
             android:contentDescription="@string/weather_description"
-            android:src="@drawable/dunno"
 
-            />
+            android:src="@drawable/dunno" />
     </FrameLayout>
 
 </RelativeLayout>

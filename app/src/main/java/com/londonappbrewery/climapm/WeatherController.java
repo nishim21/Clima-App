@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,10 +61,13 @@ public class WeatherController extends AppCompatActivity {
         setContentView(R.layout.weather_controller_layout);
 
         // Linking the elements in the layout to Java code
+
         mCityLabel = (TextView) findViewById(R.id.locationTV);
         mWeatherImage = (ImageView) findViewById(R.id.weatherSymbolIV);
         mTemperatureLabel = (TextView) findViewById(R.id.tempTV);
+
         ImageButton changeCityButton = (ImageButton) findViewById(R.id.changeCityButton);
+
 
         // TODO: Add an OnClickListener to the changeCityButton here:
         changeCityButton.setOnClickListener(new View.OnClickListener() {
@@ -209,9 +214,60 @@ public class WeatherController extends AppCompatActivity {
         mTemperatureLabel.setText(weather.getTemperature());
         mCityLabel.setText(weather.getCity());
 
+        RelativeLayout layoutBG = (RelativeLayout) findViewById(R.id.backgroundLayout);
+        TextView location = (TextView) findViewById(R.id.locationTV);
+
         int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());
 
         mWeatherImage.setImageResource(resourceID);
+
+        switch (weather.getIconName())
+        {
+            case "sunny":
+                layoutBG.setBackgroundResource(R.drawable.sunnyday);
+                location.setBackgroundColor(Color.parseColor("#8098E448"));
+                location.setTextColor(Color.parseColor("#9996F82F"));
+                break;
+            case "cloudy2":
+                layoutBG.setBackgroundResource(R.drawable.clouds);
+                location.setBackgroundColor(Color.parseColor("#996696CF"));
+                break;
+            case "fog":
+                layoutBG.setBackgroundResource(R.drawable.fog1);
+                location.setTextColor(Color.parseColor("#99D7ECFF"));
+                location.setBackgroundColor(Color.parseColor("#80008C8E"));
+                break;
+            case "light_rain" :
+                layoutBG.setBackgroundResource(R.drawable.lightrain);
+                location.setBackgroundColor(Color.parseColor("#996696CF"));
+                break;
+            case "shower3" :
+                layoutBG.setBackgroundResource(R.drawable.shower);
+                location.setBackgroundColor(Color.parseColor("#80112135"));
+                location.setTextColor(Color.parseColor("#992C5B97"));
+                break;
+            case "tstorm1" :
+                layoutBG.setBackgroundResource(R.drawable.wind);
+                location.setBackgroundColor(Color.parseColor("#80456721"));
+                location.setTextColor(Color.parseColor("#9962932F"));
+                break;
+            case "tstorm3" :
+                layoutBG.setBackgroundResource(R.drawable.storm);
+                location.setBackgroundColor(Color.parseColor("#80112135"));
+                location.setTextColor(Color.parseColor("#992C5B97"));
+                break;
+            case "snow4" :
+            case "snow5" :
+                layoutBG.setBackgroundResource(R.drawable.snow);
+                location.setBackgroundColor(Color.parseColor("#80FFFFFF"));
+                location.setTextColor(Color.parseColor("#99FFFFFF"));
+                break;
+            default :
+                layoutBG.setBackgroundResource(R.drawable.bg4);
+                break;
+        }
+
+
     }
 
     // TODO: Add onPause() here:
